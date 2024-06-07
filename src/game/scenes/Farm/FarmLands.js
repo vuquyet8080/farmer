@@ -1,5 +1,5 @@
 import { LAND_TYPE } from "../../../constants/lands";
-import { LandsAssets } from "../../components/land/LandAssets";
+import { LandsAssets } from "../../components/land/LandsAssets";
 const START_POSITION_LAND = {
 	left: 180,
 	top: 600,

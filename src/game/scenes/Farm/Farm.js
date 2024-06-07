@@ -43,34 +43,5 @@ export class Farm extends Scene {
 		this.lands.createLands();
 	}
 
-	// moveCameraUp() {
-	// 	if (this.cameras.main.scrollY > 0) {
-	// 		this.cameras.main.scrollY -= 5;
-	// 	}
-	// }
-
-	// moveCameraDown() {
-	// 	const maxY = this.background.displayHeight - this.cameras.main.height;
-	// 	if (this.cameras.main.scrollY < maxY) {
-	// 		this.cameras.main.scrollY += 5;
-	// 	}
-	// }
-
-	// moveCameraLeft() {
-	// 	if (this.cameras.main.scrollX > 0) {
-	// 		this.cameras.main.scrollX -= 5;
-	// 	}
-	// }
-
-	// moveCameraRight() {
-	// 	const maxX = this.background.displayWidth - this.cameras.main.width;
-	// 	if (this.cameras.main.scrollX < maxX) {
-	// 		this.cameras.main.scrollX += 5;
-	// 	}
-	// }
-	update() {
-		// Update farmer
-		// console.log("xxx");
-		// this.farmer.update();
-	}
+	update() {}
 }
