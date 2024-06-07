@@ -6,11 +6,11 @@ const scale = 0.8;
 const widthBg = 2300 * scale;
 const heightBg = 1270 * scale;
 
-export class MainMenu extends Scene {
+export class Farm extends Scene {
     logoTween;
 
     constructor() {
-        super("MainMenu");
+        super("Farm");
     }
 
     create() {

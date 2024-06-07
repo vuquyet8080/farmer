@@ -1,7 +1,7 @@
 import { Boot } from "./scenes/Boot";
 import { Game } from "./scenes/Game";
 import { GameOver } from "./scenes/GameOver";
-import { MainMenu } from "./scenes/MainMenu";
+import { Farm } from "./scenes/Farm";
 import Phaser from "phaser";
 import { Preloader } from "./scenes/Preloader";
 
@@ -14,8 +14,8 @@ const config = {
     width: window.innerWidth,
     height: window.innerHeight,
     parent: "game-container",
-    backgroundColor: "#928af8",
-    scene: [Boot, Preloader, MainMenu, Game, GameOver],
+    backgroundColor: "#26355D",
+    scene: [Boot, Preloader, Farm, Game, GameOver],
 };
 
 const StartGame = (parent) => {
