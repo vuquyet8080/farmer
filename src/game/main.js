@@ -1,7 +1,7 @@
 import { Boot } from "./scenes/Boot";
 import { Game } from "./scenes/Game";
 import { GameOver } from "./scenes/GameOver";
-import { Farm } from "./scenes/Farm";
+import { Farm } from "./scenes/Farm/Farm";
 import Phaser from "phaser";
 import { Preloader } from "./scenes/Preloader";
 
