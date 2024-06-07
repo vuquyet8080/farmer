@@ -1,6 +1,7 @@
 import { Scene } from "phaser";
-import { FarmerAssets } from "./FarmerAssets";
+import { FarmLands } from "./FarmLands";
 import { FarmerAction } from "./FarmerAction";
+import { FarmerAssets } from "./FarmerAssets";
 
 // const scale = 0.6;
 const scale = 0.8;
@@ -13,19 +14,33 @@ export class Farm extends Scene {
 
 	constructor() {
 		super("Farm");
+		this.lands = new FarmLands(this);
+		this.farmerAssets = new FarmerAssets(this);
 	}
 
 	preload() {
-		this.farmerAssets = new FarmerAssets(this);
+		this.load.setPath("assets");
+
+		//FARMER ASSETS
 		this.farmerAssets.preload();
 
+		// LAND
+		this.lands.preload();
+
+		// BACKGROUND
+		this.setBackground();
+	}
+
+	setBackground() {
 		this.background = this.add.image(0, 0, "background").setOrigin(0, 0);
 		this.background.setDisplaySize(widthBg, heightBg);
 	}
-	create() {
-		const farmerSprite = this.farmerAssets.create(1000, 800);
 
+	create() {
+		const farmerSprite = this.farmerAssets.create(500, 800);
 		this.farmer = new FarmerAction(this, farmerSprite);
+
+		this.lands.createLands();
 	}
 
 	// moveCameraUp() {

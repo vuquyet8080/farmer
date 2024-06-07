@@ -4,7 +4,7 @@ export class FarmerAssets {
 	}
 
 	preload() {
-		this.scene.load.setPath("assets");
+		// this.scene.load.setPath("assets");
 
 		this.scene.load.atlas({
 			key: "farmerAtlas",
@@ -18,6 +18,8 @@ export class FarmerAssets {
 		const farmerSprite = this.scene.add.sprite(x, y, "farmerAtlas");
 		farmerSprite.setScale(0.7);
 		farmerSprite.play("wall");
+		farmerSprite.setDepth(100);
+
 		return farmerSprite;
 	}
 	createAnimations() {
