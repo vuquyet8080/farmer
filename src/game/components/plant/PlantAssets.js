@@ -1,12 +1,14 @@
+import { PlantBehavior } from "./PlantBehavior";
+
 export class PlantAssets {
 	constructor(scene) {
 		this.scene = scene;
 		this.plantSprite = null;
+		this.currentTimer = null;
+		// this.plantBehavior = null;
 	}
 
 	preload() {
-		console.log("preload PlantAssets");
-
 		this.scene.load.atlas({
 			key: "plantAtlas",
 			textureURL: "plant/plants.png",
@@ -21,6 +23,8 @@ export class PlantAssets {
 		this.plantSprite.displayHeight = height;
 		this.plantSprite.setDepth(1);
 
+		this.plantBehavior = new PlantBehavior(this.scene, this.plantSprite);
+		this.plantBehavior.startCountdown(100);
 		return this.plantSprite;
 	}
 	createIcon(x, y, frameName) {

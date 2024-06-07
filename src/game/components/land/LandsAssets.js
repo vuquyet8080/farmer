@@ -10,6 +10,7 @@ export class LandsAssets {
 		this.currentDetailView = null; // Track the current detail view
 		this.plantAccess = new PlantAssets(scene);
 		this.currentPositionSelect = null;
+		this.currentTimer = null;
 	}
 
 	preload() {
@@ -23,14 +24,6 @@ export class LandsAssets {
 		this.landSprite.displayHeight = height;
 		this.landSprite.setDepth(1);
 		this.addInteractionToLand(this.landSprite);
-
-		const plant = this.plantAccess.createPlant(
-			500,
-			500,
-			80,
-			80,
-			"brush/brush2.png"
-		);
 
 		return this.landSprite;
 	}
