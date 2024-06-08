@@ -1,5 +1,6 @@
 import { GameObjects, Math } from "phaser";
-import { heightBg, widthBg } from "./Farm";
+import { heightBg, widthBg } from "../../scenes/Farm/Farm";
+// import { heightBg, widthBg } from "../../scenes/Farm";
 
 export class FarmerAction extends GameObjects.Sprite {
 	constructor(scene, farmerSprite) {

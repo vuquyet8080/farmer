@@ -2,8 +2,8 @@ import { Scene } from "phaser";
 import { ACCESS_RESOURCE, VERTICES_TX } from "../../../constants/house";
 import { factoryAssets } from "../../components/factoryAssets/factoryAssets";
 import { FarmLands } from "./FarmLands";
-import { FarmerAction } from "./FarmerAction";
-import { FarmerAssets } from "./FarmerAssets";
+import { FarmerAction } from "../../components/people/FarmerAction";
+import { FarmerAssets } from "../../components/people/FarmerAssets";
 
 // const scale = 0.6;
 const scale = 0.8;
