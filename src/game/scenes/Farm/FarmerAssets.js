@@ -15,12 +15,28 @@ export class FarmerAssets {
 
 	create(x, y) {
 		this.createAnimations();
-		const farmerSprite = this.scene.add.sprite(x, y, "farmerAtlas");
-		farmerSprite.setScale(0.7);
-		farmerSprite.play("wall");
-		farmerSprite.setDepth(100);
 
-		return farmerSprite;
+		// Create a Matter sprite
+		this.farmerSprite = this.scene.matter.add.sprite(x, y, "farmerAtlas");
+		this.farmerSprite.setBody({
+			type: "rectangle",
+			width: 70,
+			height: 90,
+			isStatic: true, // Ensure the farmer sprite doesn't move
+			// Add any other physics properties you need, like mass, density, friction, etc.
+		});
+
+		// Optionally set the scale
+		this.farmerSprite.setScale(0.7);
+
+		// Play animation
+		this.farmerSprite.play("wall");
+
+		// Optionally set depth
+		this.farmerSprite.setDepth(100);
+
+		// Return the created sprite
+		return this.farmerSprite;
 	}
 	createAnimations() {
 		this.scene.anims.create({
