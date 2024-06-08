@@ -4,4 +4,6 @@ export const ACCESS_RESOURCE = {
 	COCONUT_1: "COCONUT_1",
 	COCONUT_2: "COCONUT_2",
 	TX: "TX",
+	NEWS: "NEWS",
+	COW_BOX: "COW_BOX",
 };

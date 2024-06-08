@@ -12,6 +12,8 @@ export class factoryAssets {
 		this.scene.load.image(ACCESS_RESOURCE.COCONUT_1, "plant/coconut_1.png"); // Adjust the path
 		this.scene.load.image(ACCESS_RESOURCE.COCONUT_2, "plant/coconut_2.png"); // Adjust the path
 		this.scene.load.image(ACCESS_RESOURCE.TX, "plant/tx_plant.png"); // Adjust the path
+		this.scene.load.image(ACCESS_RESOURCE.NEWS, "news.png");
+		this.scene.load.image(ACCESS_RESOURCE.COW_BOX, "cow_box.png");
 	}
 
 	createHouse(x = 500, y = 600, frameName) {

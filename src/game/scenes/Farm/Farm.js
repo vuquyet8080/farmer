@@ -79,7 +79,38 @@ export class Farm extends Scene {
 		this.factoryAccess.setIndex(coconut_2, 1);
 		this.factoryAccess.setSize(coconut_2, 110, 170);
 		this.factoryAccess.setStatic(coconut_2);
+
+		//TX
+
+		const tx1 = this.factoryAccess.createHouse(1300, 925, ACCESS_RESOURCE.TX);
+		this.factoryAccess.setIndex(tx1, 1);
+		this.factoryAccess.setSize(tx1, 100, 160);
+		this.factoryAccess.setStatic(tx1);
+
+		const tx2 = this.factoryAccess.createHouse(1490, 925, ACCESS_RESOURCE.TX);
+		this.factoryAccess.setIndex(tx2, 1);
+		this.factoryAccess.setSize(tx2, 100, 160);
+		this.factoryAccess.setStatic(tx2);
+
+		const news = this.factoryAccess.createHouse(
+			1120,
+			900,
+			ACCESS_RESOURCE.NEWS
+		);
+		this.factoryAccess.setIndex(news, 1);
+		this.factoryAccess.setSize(news, 80, 74);
+		this.factoryAccess.setStatic(news);
+
+		const cowBox = this.factoryAccess.createHouse(
+			1400,
+			600,
+			ACCESS_RESOURCE.COW_BOX
+		);
+		this.factoryAccess.setIndex(cowBox, 1);
+		this.factoryAccess.setSize(cowBox, 190, 90);
+		this.factoryAccess.setStatic(cowBox);
 	}
+
 	create() {
 		const farmerSprite = this.farmerAssets.create(500, 800);
 		this.farmer = new FarmerAction(this, farmerSprite);
@@ -88,8 +119,6 @@ export class Farm extends Scene {
 		this.createWareHouse();
 		this.createPool();
 		this.createPlants();
-
-		// // Set the ob
 	}
 
 	update() {}
