@@ -1,4 +1,4 @@
-import { GameObjects } from "phaser";
+import { GameObjects, Math } from "phaser";
 import { heightBg, widthBg } from "./Farm";
 
 export class FarmerAction extends GameObjects.Sprite {
@@ -17,31 +17,31 @@ export class FarmerAction extends GameObjects.Sprite {
 		this.scene.cameras.main.startFollow(this.farmer);
 	}
 
-	moveUp() {
-		if (this.farmer.y > 520) {
-			this.farmer.y -= 20; // Adjust the value as needed
-		}
-	}
+	moveFarmer(pointerX, pointerY) {
+		const deltaX = pointerX - this.farmer.x;
 
-	moveDown() {
-		if (this.farmer.y < heightBg - this.farmer.height + 40) {
-			this.farmer.y += 20; // Adjust the value as needed
-		}
-	}
-	moveLeft() {
-		if (this.farmer.x > 20) {
-			this.farmer.x -= 20; // Adjust the value as needed
+		// Set the direction and flip the sprite accordingly
+		if (deltaX < 0) {
 			this.farmer.flipX = true; // Flip sprite horizontally when moving left
-			this.currentDirection = "left"; // Update current direction
-		}
-	}
-
-	moveRight() {
-		if (this.farmer.x < widthBg - this.farmer.width + 40) {
-			this.farmer.x += 20; // Adjust the value as needed
+			this.currentDirection = "left";
+		} else {
 			this.farmer.flipX = false; // Do not flip sprite when moving right
-			this.currentDirection = "right"; // Update current direction
+			this.currentDirection = "right";
 		}
+
+		this.scene.tweens.add({
+			targets: this.farmer,
+			x: pointerX,
+			y: pointerY >= 520 ? pointerY : 520,
+			duration:
+				Math.Distance.Between(
+					this.farmer.x,
+					this.farmer.y,
+					pointerX,
+					pointerX
+				) * 3,
+			ease: "Linear",
+		});
 	}
 	handleInput() {
 		this.scene.input.keyboard.on("keydown", (event) => {
@@ -53,19 +53,11 @@ export class FarmerAction extends GameObjects.Sprite {
 					}, 900);
 					return;
 				}
-				case "ArrowUp":
-					this.moveUp();
-					break;
-				case "ArrowDown":
-					this.moveDown();
-					break;
-				case "ArrowLeft":
-					this.moveLeft();
-					break;
-				case "ArrowRight":
-					this.moveRight();
-					break;
 			}
+		});
+
+		this.scene.input.on("pointerdown", (pointer) => {
+			this.moveFarmer(pointer.worldX, pointer.worldY);
 		});
 	}
 }

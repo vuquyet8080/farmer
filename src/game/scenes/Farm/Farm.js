@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import { ACCESS_RESOURCE } from "../../../constants/house";
+import { ACCESS_RESOURCE, VERTICES_TX } from "../../../constants/house";
 import { factoryAssets } from "../../components/factoryAssets/factoryAssets";
 import { FarmLands } from "./FarmLands";
 import { FarmerAction } from "./FarmerAction";
@@ -43,7 +43,7 @@ export class Farm extends Scene {
 	}
 
 	createWareHouse() {
-		const wareHouse = this.factoryAccess.createHouse(
+		const wareHouse = this.factoryAccess.createObj(
 			1160,
 			580,
 			ACCESS_RESOURCE.WARE_HOUSE
@@ -55,14 +55,14 @@ export class Farm extends Scene {
 		this.factoryAccess.setStatic(wareHouse);
 	}
 	createPool() {
-		const pool = this.factoryAccess.createHouse(815, 620, ACCESS_RESOURCE.POOL);
+		const pool = this.factoryAccess.createObj(815, 620, ACCESS_RESOURCE.POOL);
 		this.factoryAccess.setIndex(pool, 1);
 		this.factoryAccess.setSize(pool, 270, 120);
 		this.factoryAccess.setStatic(pool);
 		//
 	}
 	createPlants() {
-		const coconut_1 = this.factoryAccess.createHouse(
+		const coconut_1 = this.factoryAccess.createObj(
 			680,
 			600,
 			ACCESS_RESOURCE.COCONUT_1
@@ -71,7 +71,7 @@ export class Farm extends Scene {
 		this.factoryAccess.setSize(coconut_1, 90, 110);
 		this.factoryAccess.setStatic(coconut_1);
 
-		const coconut_2 = this.factoryAccess.createHouse(
+		const coconut_2 = this.factoryAccess.createObj(
 			970,
 			600,
 			ACCESS_RESOURCE.COCONUT_2
@@ -82,26 +82,32 @@ export class Farm extends Scene {
 
 		//TX
 
-		const tx1 = this.factoryAccess.createHouse(1300, 925, ACCESS_RESOURCE.TX);
+		const tx1 = this.factoryAccess.createTrapezium(
+			1300,
+			925,
+			ACCESS_RESOURCE.TX,
+			VERTICES_TX
+		);
 		this.factoryAccess.setIndex(tx1, 1);
 		this.factoryAccess.setSize(tx1, 100, 160);
 		this.factoryAccess.setStatic(tx1);
 
-		const tx2 = this.factoryAccess.createHouse(1490, 925, ACCESS_RESOURCE.TX);
+		const tx2 = this.factoryAccess.createTrapezium(
+			1490,
+			925,
+			ACCESS_RESOURCE.TX,
+			VERTICES_TX
+		);
 		this.factoryAccess.setIndex(tx2, 1);
 		this.factoryAccess.setSize(tx2, 100, 160);
 		this.factoryAccess.setStatic(tx2);
 
-		const news = this.factoryAccess.createHouse(
-			1120,
-			900,
-			ACCESS_RESOURCE.NEWS
-		);
+		const news = this.factoryAccess.createObj(1120, 900, ACCESS_RESOURCE.NEWS);
 		this.factoryAccess.setIndex(news, 1);
 		this.factoryAccess.setSize(news, 80, 74);
 		this.factoryAccess.setStatic(news);
 
-		const cowBox = this.factoryAccess.createHouse(
+		const cowBox = this.factoryAccess.createObj(
 			1400,
 			600,
 			ACCESS_RESOURCE.COW_BOX

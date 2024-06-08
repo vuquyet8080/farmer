@@ -16,7 +16,7 @@ export class factoryAssets {
 		this.scene.load.image(ACCESS_RESOURCE.COW_BOX, "cow_box.png");
 	}
 
-	createHouse(x = 500, y = 600, frameName) {
+	createObj(x = 500, y = 600, frameName) {
 		const obj = this.scene.matter.add.image(x, y, frameName);
 
 		return obj;
@@ -36,5 +36,18 @@ export class factoryAssets {
 
 	setBoundBox(obj, width, height) {
 		obj.setRectangle(width, height);
+	}
+
+	createTrapezium(x = 500, y = 600, frameName, point) {
+		// Create a Matter body with the trapezium shape
+		const trapezium = this.scene.matter.add.image(x, y, frameName, null, {
+			shape: {
+				type: "fromVertices",
+				verts: point,
+			},
+			isStatic: true, // Change to false if you want the object to be dynamic
+		});
+
+		return trapezium;
 	}
 }

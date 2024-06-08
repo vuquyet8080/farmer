@@ -7,3 +7,10 @@ export const ACCESS_RESOURCE = {
 	NEWS: "NEWS",
 	COW_BOX: "COW_BOX",
 };
+
+export const VERTICES_TX = [
+	{ x: -10, y: -50 }, // top-left
+	{ x: 10, y: -50 }, // top-right
+	{ x: 50, y: 50 }, // bottom-right
+	{ x: -50, y: 50 }, // bottom-left
+];
