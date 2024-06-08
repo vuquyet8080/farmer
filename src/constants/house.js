@@ -1,4 +1,7 @@
 export const ACCESS_RESOURCE = {
 	WARE_HOUSE: "WARE_HOUSE",
 	POOL: "POOL",
+	COCONUT_1: "COCONUT_1",
+	COCONUT_2: "COCONUT_2",
+	TX: "TX",
 };

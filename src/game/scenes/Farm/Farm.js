@@ -59,8 +59,26 @@ export class Farm extends Scene {
 		this.factoryAccess.setIndex(pool, 1);
 		this.factoryAccess.setSize(pool, 270, 120);
 		this.factoryAccess.setStatic(pool);
-
 		//
+	}
+	createPlants() {
+		const coconut_1 = this.factoryAccess.createHouse(
+			680,
+			600,
+			ACCESS_RESOURCE.COCONUT_1
+		);
+		this.factoryAccess.setIndex(coconut_1, 1);
+		this.factoryAccess.setSize(coconut_1, 90, 110);
+		this.factoryAccess.setStatic(coconut_1);
+
+		const coconut_2 = this.factoryAccess.createHouse(
+			970,
+			600,
+			ACCESS_RESOURCE.COCONUT_2
+		);
+		this.factoryAccess.setIndex(coconut_2, 1);
+		this.factoryAccess.setSize(coconut_2, 110, 170);
+		this.factoryAccess.setStatic(coconut_2);
 	}
 	create() {
 		const farmerSprite = this.farmerAssets.create(500, 800);
@@ -69,6 +87,7 @@ export class Farm extends Scene {
 		///
 		this.createWareHouse();
 		this.createPool();
+		this.createPlants();
 
 		// // Set the ob
 	}
