@@ -27,6 +27,10 @@ export class factoryAssets {
 		return this.scene.add.image(x, y, frameName);
 	}
 
+	createIconPlant(x, y, frameName) {
+		return this.scene.add.image(x, y, "plantAtlas", frameName);
+	}
+
 	setIndex(obj, index) {
 		obj.setDepth(index);
 	}

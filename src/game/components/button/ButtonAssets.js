@@ -10,6 +10,12 @@ export class ButtonAssets {
 		this.factoryAccess.setIndex(button, 1001);
 		return button;
 	}
+
+	createIconPlant(x, y, frameName) {
+		const button = this.factoryAccess.createIconPlant(x, y, frameName);
+		this.factoryAccess.setIndex(button, 1001);
+		return button;
+	}
 	setSize(button, width, height) {
 		this.factoryAccess.setSize(button, width, height);
 	}

@@ -17,7 +17,6 @@ export class PlantAssets {
 	}
 
 	createPlant(x, y, width, height, frameName) {
-		console.log("createPlant");
 		this.plantSprite = this.scene.add.image(x, y, "plantAtlas", frameName);
 		this.plantSprite.displayWidth = width;
 		this.plantSprite.displayHeight = height;

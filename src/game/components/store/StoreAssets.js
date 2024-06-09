@@ -1,7 +1,9 @@
 import { ACCESS_RESOURCE } from "../../../constants/house";
+import { getIconWithProductId } from "../../../constants/plant";
 import { ButtonAssets } from "../button/ButtonAssets";
 import { factoryAssets } from "../factoryAssets/factoryAssets";
-
+const BUTTON_SIZE = 40;
+const horizontalSpace = 12;
 export class StoreAssets {
 	constructor(scene) {
 		this.scene = scene;
@@ -10,20 +12,16 @@ export class StoreAssets {
 		this.playerInventory = []; // Example player inventory
 		this.buttonAssets = new ButtonAssets(scene);
 		this.items = [
-			{ name: "Item 1", icon: "itemIcon", price: 100 },
-			{ name: "Item 2", icon: "itemIcon", price: 200 },
+			{ name: "Item 1", icon: "itemIcon", price: 100, plantId: 1 },
+			{ name: "Item 2", icon: "itemIcon", price: 200, plantId: 2 },
+			{ name: "Item 3", icon: "itemIcon", price: 100, plantId: 3 },
+			{ name: "Item 4", icon: "itemIcon", price: 200, plantId: 4 },
 		];
 		// element
 		this.wareHouse = null;
 		this.storeModal = null;
 		this.closeButton = null;
-
-		// this.storeElements = {
-		// 	storeModal: null,
-		// 	closeButton: null,
-		// 	itemIcons: null,
-		// 	purchaseButtons: null,
-		// };
+		this.itemIcons = null;
 	}
 
 	createWareHouse() {
@@ -41,6 +39,37 @@ export class StoreAssets {
 		// create modal store
 		this.createModalStore();
 		this.addInteractionToStore(this.wareHouse);
+	}
+
+	createButtonItem(x, y, icon) {
+		const button = this.buttonAssets.createIconPlant(x, y, icon);
+		this.buttonAssets.setSize(button, BUTTON_SIZE, BUTTON_SIZE); // Adjust size as needed
+		this.buttonAssets.show(button, false);
+		this.buttonAssets.setAction(button, () => {
+			this.toggleStore(false);
+		});
+
+		return button;
+	}
+
+	generateListButtonItem() {
+		const buttons = [];
+		const middle = Math.floor(this.items.length / 2);
+		this.items.forEach((item, index) => {
+			const x = 1100 + (index - middle) * (BUTTON_SIZE + horizontalSpace);
+			const y = 480; // Adjust y position as needed
+			const button = this.createButtonItem(
+				x,
+				y,
+				getIconWithProductId(item.plantId)
+			);
+			button.setInteractive().on("pointerdown", () => {
+				console.log(`Clicked ${item.name}`);
+				// this.purchaseItem(item);
+			});
+			buttons.push(button);
+		});
+		this.itemIcons = buttons;
 	}
 
 	addInteractionToStore(wareHouse) {
@@ -64,14 +93,13 @@ export class StoreAssets {
 		this.buttonAssets.setSize(this.closeButton, 30, 30);
 		this.buttonAssets.show(this.closeButton, false);
 		this.buttonAssets.setAction(this.closeButton, () => {
-			console.log("11");
 			this.toggleStore(false);
 		});
 	}
 	createListItem() {
 		this.items.forEach((item, index) => {
 			const itemIcon = this.factoryAccess
-				.createObj(1100, 500 + index * 100, item.icon)
+				.createObj(1150, 500 + index * 100, item.icon)
 				.setVisible(false);
 			this.factoryAccess.setSize(itemIcon, 50, 50);
 
@@ -107,11 +135,21 @@ export class StoreAssets {
 		this.purchaseButtons = [];
 
 		this.createCloseButton();
+
+		//test
+		this.generateListButtonItem();
 	}
+
+	toggleButtonItem = (visible) => {
+		this.itemIcons?.map((item) => {
+			item.setVisible(visible);
+		});
+	};
 	toggleStore(visible) {
 		this.scene.time.delayedCall(250, () => {
 			this.storeModal.setVisible(visible);
 			this.closeButton.setVisible(visible);
+			this.toggleButtonItem(visible);
 		});
 	}
 

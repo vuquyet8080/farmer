@@ -1,3 +1,6 @@
+export const getIconWithProductId = (plantId) => {
+	return LIST_PLANT_1.find((item) => item.plantId === plantId).state[1].state;
+};
 export const LIST_PLANT_1 = [
 	{
 		plantId: 1,
