@@ -1,9 +1,10 @@
 import { Scene } from "phaser";
 import { ACCESS_RESOURCE, VERTICES_TX } from "../../../constants/house";
 import { factoryAssets } from "../../components/factoryAssets/factoryAssets";
-import { FarmLands } from "./FarmLands";
 import { FarmerAction } from "../../components/people/FarmerAction";
 import { FarmerAssets } from "../../components/people/FarmerAssets";
+import { StoreAssets } from "../../components/store/StoreAssets";
+import { FarmLands } from "./FarmLands";
 
 // const scale = 0.6;
 const scale = 0.8;
@@ -19,6 +20,8 @@ export class Farm extends Scene {
 		this.lands = new FarmLands(this);
 		this.farmerAssets = new FarmerAssets(this);
 		this.factoryAccess = new factoryAssets(this);
+		this.store = new StoreAssets(this);
+		// this.storeAction = new StoreAction(this);
 	}
 
 	preload() {
@@ -35,6 +38,9 @@ export class Farm extends Scene {
 
 		// BACKGROUND
 		this.setBackground();
+
+		//STORE
+		// this.store.preload();
 	}
 
 	setBackground() {
@@ -42,18 +48,18 @@ export class Farm extends Scene {
 		this.background.setDisplaySize(widthBg, heightBg);
 	}
 
-	createWareHouse() {
-		const wareHouse = this.factoryAccess.createObj(
-			1160,
-			580,
-			ACCESS_RESOURCE.WARE_HOUSE
-		);
-		this.factoryAccess.setIndex(wareHouse, 100);
-		this.factoryAccess.setSize(wareHouse, 200, 200);
-		this.factoryAccess.setBoundBox(wareHouse, 180, 180);
+	// createWareHouse() {
+	// 	const wareHouse = this.factoryAccess.createObj(
+	// 		1160,
+	// 		580,
+	// 		ACCESS_RESOURCE.WARE_HOUSE
+	// 	);
+	// 	this.factoryAccess.setIndex(wareHouse, 100);
+	// 	this.factoryAccess.setSize(wareHouse, 200, 200);
+	// 	this.factoryAccess.setBoundBox(wareHouse, 180, 180);
 
-		this.factoryAccess.setStatic(wareHouse);
-	}
+	// 	this.factoryAccess.setStatic(wareHouse);
+	// }
 	createPool() {
 		const pool = this.factoryAccess.createObj(815, 620, ACCESS_RESOURCE.POOL);
 		this.factoryAccess.setIndex(pool, 1);
@@ -67,7 +73,7 @@ export class Farm extends Scene {
 			600,
 			ACCESS_RESOURCE.COCONUT_1
 		);
-		this.factoryAccess.setIndex(coconut_1, 1);
+		this.factoryAccess.setIndex(coconut_1, 100);
 		this.factoryAccess.setSize(coconut_1, 90, 110);
 		this.factoryAccess.setStatic(coconut_1);
 
@@ -76,7 +82,7 @@ export class Farm extends Scene {
 			600,
 			ACCESS_RESOURCE.COCONUT_2
 		);
-		this.factoryAccess.setIndex(coconut_2, 1);
+		this.factoryAccess.setIndex(coconut_2, 100);
 		this.factoryAccess.setSize(coconut_2, 110, 170);
 		this.factoryAccess.setStatic(coconut_2);
 
@@ -88,7 +94,7 @@ export class Farm extends Scene {
 			ACCESS_RESOURCE.TX,
 			VERTICES_TX
 		);
-		this.factoryAccess.setIndex(tx1, 1);
+		this.factoryAccess.setIndex(tx1, 100);
 		this.factoryAccess.setSize(tx1, 100, 160);
 		this.factoryAccess.setStatic(tx1);
 
@@ -98,12 +104,12 @@ export class Farm extends Scene {
 			ACCESS_RESOURCE.TX,
 			VERTICES_TX
 		);
-		this.factoryAccess.setIndex(tx2, 1);
+		this.factoryAccess.setIndex(tx2, 100);
 		this.factoryAccess.setSize(tx2, 100, 160);
 		this.factoryAccess.setStatic(tx2);
 
 		const news = this.factoryAccess.createObj(1120, 900, ACCESS_RESOURCE.NEWS);
-		this.factoryAccess.setIndex(news, 1);
+		this.factoryAccess.setIndex(news, 100);
 		this.factoryAccess.setSize(news, 80, 74);
 		this.factoryAccess.setStatic(news);
 
@@ -119,12 +125,19 @@ export class Farm extends Scene {
 
 	create() {
 		const farmerSprite = this.farmerAssets.create(500, 800);
-		this.farmer = new FarmerAction(this, farmerSprite);
+		this.farmerAction = new FarmerAction(this, farmerSprite);
+		// console.log("this.farmerAction", farmerSprite);
+		// this.farmerAction.setMoveDisable(false);
+		// console.log("this.farmerAction", this.farmerAction.setMoveDisable);
 		this.lands.createLands();
-		///
-		this.createWareHouse();
+
 		this.createPool();
 		this.createPlants();
+		this.store.createWareHouse();
+		// this.store.toggleStore(true);
+		// console.log("this.storeAction", this.storeAction);
+
+		// this.store.create();
 	}
 
 	update() {}

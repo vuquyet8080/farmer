@@ -14,12 +14,17 @@ export class factoryAssets {
 		this.scene.load.image(ACCESS_RESOURCE.TX, "plant/tx_plant.png"); // Adjust the path
 		this.scene.load.image(ACCESS_RESOURCE.NEWS, "news.png");
 		this.scene.load.image(ACCESS_RESOURCE.COW_BOX, "cow_box.png");
+		this.scene.load.image(ACCESS_RESOURCE.STORE_BG, "bg.png");
+		this.scene.load.image(ACCESS_RESOURCE.CLOSE_BUTTON, "icons/close.png");
 	}
 
 	createObj(x = 500, y = 600, frameName) {
 		const obj = this.scene.matter.add.image(x, y, frameName);
 
 		return obj;
+	}
+	createIcon(x, y, frameName) {
+		return this.scene.add.image(x, y, frameName);
 	}
 
 	setIndex(obj, index) {
@@ -49,5 +54,8 @@ export class factoryAssets {
 		});
 
 		return trapezium;
+	}
+	setVisible(obj, status) {
+		obj.setVisible(status);
 	}
 }

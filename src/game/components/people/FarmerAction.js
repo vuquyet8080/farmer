@@ -1,4 +1,4 @@
-import { GameObjects, Math } from "phaser";
+import { GameObjects, Math, Geom } from "phaser";
 import { heightBg, widthBg } from "../../scenes/Farm/Farm";
 // import { heightBg, widthBg } from "../../scenes/Farm";
 
@@ -10,6 +10,9 @@ export class FarmerAction extends GameObjects.Sprite {
 		this.setupCamera();
 		this.handleInput();
 		this.currentDirection = "right"; // Initial direction
+		this.disableMove = false;
+
+		// this.scene.matter.add.gameObject(this.farmer, { shape: "rectangle" });
 	}
 
 	setupCamera() {
@@ -18,7 +21,13 @@ export class FarmerAction extends GameObjects.Sprite {
 		this.scene.cameras.main.startFollow(this.farmer);
 	}
 
+	setMoveDisable(status) {
+		console.log("setMoveAction", status);
+		this.disableMove = status;
+	}
+
 	moveFarmer(pointerX, pointerY) {
+		if (this.disableMove) return;
 		const deltaX = pointerX - this.farmer.x;
 
 		// Set the direction and flip the sprite accordingly
@@ -29,6 +38,7 @@ export class FarmerAction extends GameObjects.Sprite {
 			this.farmer.flipX = false; // Do not flip sprite when moving right
 			this.currentDirection = "right";
 		}
+		const targetPosition = { x: pointerX, y: pointerY >= 520 ? pointerY : 520 };
 
 		this.scene.tweens.add({
 			targets: this.farmer,
@@ -38,10 +48,16 @@ export class FarmerAction extends GameObjects.Sprite {
 				Math.Distance.Between(
 					this.farmer.x,
 					this.farmer.y,
-					pointerX,
-					pointerX
+					targetPosition.x,
+					targetPosition.y
 				) * 3,
+
 			ease: "Linear",
+
+			// onComplete: () => {
+			// 	// Ensure the farmer stops at the correct position
+			// 	this.farmer.setPosition(targetPosition.x, targetPosition.y);
+			// },
 		});
 	}
 	handleInput() {
@@ -58,6 +74,7 @@ export class FarmerAction extends GameObjects.Sprite {
 		});
 
 		this.scene.input.on("pointerdown", (pointer) => {
+			if (this.scene.store.storeModal._visible) return;
 			this.moveFarmer(pointer.worldX, pointer.worldY);
 		});
 	}

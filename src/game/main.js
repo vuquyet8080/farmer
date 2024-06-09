@@ -15,16 +15,16 @@ const config = {
 	physics: {
 		default: "matter",
 		matter: {
-			gravity: { x: 0, y: 0 },
-			debug: true, // Set to true for debugging physics
+			gravity: { x: 0, y: 0, scale: 0 },
+			debug: false, // Set to true for debugging physics
 		},
-		fps: {
-			forceSetTimeOut: true,
-			panicMax: 0,
-			smoothStep: false,
-			target: 120,
-		},
-		enableDebug: true,
+		// fps: {
+		// 	forceSetTimeOut: true,
+		// 	panicMax: 0,
+		// 	smoothStep: false,
+		// 	target: 120,
+		// },
+		enableDebug: false,
 		render: {
 			clearBeforeRender: false, // Set clearBeforeRender to false for optimization
 		},

@@ -19,12 +19,11 @@ export class FarmerAssets {
 		// Create a Matter sprite
 		this.farmerSprite = this.scene.matter.add.sprite(x, y, "farmerAtlas");
 		this.farmerSprite.setBody({
-			type: "rectangle",
-			width: 70,
-			height: 90,
-			isStatic: true, // Ensure the farmer sprite doesn't move
-			// Add any other physics properties you need, like mass, density, friction, etc.
+			type: "circle",
+			radius: 35, // Adjust the radius as needed
 		});
+
+		this.farmerSprite.setCollidesWith(0.1);
 
 		// Optionally set the scale
 		this.farmerSprite.setScale(0.7);

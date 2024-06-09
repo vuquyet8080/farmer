@@ -12,7 +12,6 @@ export class FarmLands {
 	}
 
 	preload() {
-		console.log("preload1");
 		this.landsAssets.preload(); // Delegate preload to LandsAssets
 	}
 

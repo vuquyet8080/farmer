@@ -6,6 +6,8 @@ export const ACCESS_RESOURCE = {
 	TX: "TX",
 	NEWS: "NEWS",
 	COW_BOX: "COW_BOX",
+	STORE_BG: "STORE_BG",
+	CLOSE_BUTTON: "CLOSE_BUTTON",
 };
 
 export const VERTICES_TX = [
